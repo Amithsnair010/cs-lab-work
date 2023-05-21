@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class BankAccount {
+private:
+    string accountNumber;
+    double balance;
+
+public:
+    // Constructor
+    BankAccount(string accNumber, double initialBalance) {
+        accountNumber = accNumber;
+        balance = initialBalance;
+    }
+
+    // Accessor for account balance
+    double getBalance() {
+        return balance;
+    }
+
+    // Method to deposit funds
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    // Method to withdraw funds
+    bool withdraw(double amount) {
+        if (amount > balance) {
+            cout << "Insufficient funds." << endl;
+            return false;
+        }
+        balance -= amount;
+        return true;
+    }
+};
+int main() {
+    // Create a BankAccount object with initial balance of $1000
+    BankAccount account("123456789", 1000.0);
+    account.deposit(1000.0);
+    account.withdraw(500.0);
+    cout << "Account balance: $" << account.getBalance() << endl;
+    account.deposit(1000.0);
+    account.withdraw(1500.0);
+    return 0;
+}
